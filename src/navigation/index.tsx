@@ -19,6 +19,7 @@ export const options: NativeStackNavigationOptions = {
   headerStyle: {
     backgroundColor: '#222',
   },
+  animation: 'fade',
   navigationBarColor: '#222',
   headerTintColor: '#fff'
 };

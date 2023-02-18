@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { GestureResponderEvent, StyleProp, StyleSheet, ViewStyle } from "react-native";
-import { pushIfExist } from "../app/logic/utils";
+import { pushIfExist } from "../utils/arrays";
 import { ScreenProps, StackParamList } from "../types";
 import CustomButton, { CustomButtonStylesProp } from "./CustomButton";
 
