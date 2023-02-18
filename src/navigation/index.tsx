@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import Home from '../screens/Home';
-import { Login } from '../screens/Login';
+import Login from '../screens/Login';
 import Register from '../screens/Register';
 import { StackParamList } from '../types';
 
@@ -20,9 +20,7 @@ export const options: NativeStackNavigationOptions = {
     backgroundColor: '#222',
   },
   navigationBarColor: '#222',
-  headerTitleStyle: {
-    color: '#fff',
-  },
+  headerTintColor: '#fff'
 };
 
 export function Navigator() {

@@ -45,10 +45,14 @@ export default function NavigationButton(props: NavigationButtonProps) {
 
 export const styles = StyleSheet.create({
   body: {
-    backgroundColor: '#7772',
-    padding: 5,
+    backgroundColor: '#224',
+    padding: 7,
     borderRadius: 5,
     marginLeft: 5,
     marginRight: 5,
   },
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  }
 });

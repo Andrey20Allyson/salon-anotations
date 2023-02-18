@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import CustomButton from "./CustomButton";
+import CustomButton, { CustomButtonStylesProp } from "./CustomButton";
 
 export interface SubmitButtonProps {
   title: string;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 export default function SubmitButton(props: SubmitButtonProps) {
@@ -20,4 +20,7 @@ export const styles = StyleSheet.create({
   body: {
     backgroundColor: '#44f',
   },
+  text: {
+    fontSize: 16,
+  }
 });

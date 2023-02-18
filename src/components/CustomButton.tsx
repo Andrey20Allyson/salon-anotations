@@ -33,7 +33,7 @@ export default function CustomButton(props: CustomButtonProps) {
 
 export const styles = StyleSheet.create({
   body: {
-    marginTop: 40,
+    marginTop: 20,
     backgroundColor: '#888',
     padding: 6,
     borderRadius: 6,
