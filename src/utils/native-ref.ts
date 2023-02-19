@@ -15,3 +15,35 @@ export function focusIn<T extends RefType<NativeMethods>>(index: number, array: 
     if (component) component.focus();
   }
 }
+
+export class RefStorage<T> {
+  private refs: RefType<T>[];
+
+  constructor() {
+    this.refs = [];
+  }
+
+  at(index: number) {
+    return this.refs[index];
+  }
+
+  createSetRef(index: number) {
+    return (ref: RefType<T>) => {
+      this.refs[index] = ref;
+    }
+  }
+
+  createHandler(index: number, callback: (ref: T) => void) {
+    return () => {
+      const ref = this.refs[index];
+
+      if (ref) callback(ref);
+    }
+  }
+}
+
+export function createRefStorage<T>() {
+  const refStorage = new RefStorage<T>();
+
+  return refStorage;
+}

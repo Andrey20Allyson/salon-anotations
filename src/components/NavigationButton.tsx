@@ -9,7 +9,7 @@ export interface NavigationButtonProps {
   location?: keyof StackParamList;
   styles?: CustomButtonStylesProp;
   canNavigate?: (location: keyof StackParamList) => boolean;
-  onPress?: (ev: GestureResponderEvent) => boolean;
+  onPress?: (ev: GestureResponderEvent) => void;
   onNavigate?: (location: keyof StackParamList) => void;
 }
 

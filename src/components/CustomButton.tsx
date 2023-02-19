@@ -1,6 +1,6 @@
 import { Pressable, PressableProps, StyleProp, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
-import { insertObjectInArrays, insertObjectsInArrays } from '../utils/arrays';
 import { text } from '../styles/base/text';
+import { insertObjectInArrays, insertObjectsInArrays } from '../utils/arrays';
 
 export interface CustomButtonStylesProp {
   body?: StyleProp<ViewStyle>;

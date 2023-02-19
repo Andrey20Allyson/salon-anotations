@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import CustomButton, { CustomButtonStylesProp } from "./CustomButton";
+import CustomButton from "./CustomButton";
 
 export interface SubmitButtonProps {
   title: string;
