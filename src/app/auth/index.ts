@@ -5,7 +5,14 @@ import {
   getAuth,
   signInWithEmailAndPassword
 } from "firebase/auth";
-import { doc, DocumentReference, Firestore, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  doc,
+  DocumentReference,
+  Firestore,
+  getDoc,
+  getFirestore,
+  setDoc
+} from "firebase/firestore";
 import { app } from "../firebase/app";
 
 export interface SignInOptions {
@@ -28,8 +35,31 @@ export interface UserInfo extends SignUpOptions {
   accountCreationDate: number,
 }
 
+export enum Errors {
+  INVALID_NAME = 0,
+  INVALID_EMAIL = 1,
+  SMALL_PASSWORD = 2,
+  INCORRECT_CREDENTIALS = 3,
+  EMAIL_IS_ALREADY_IN_USE = 4,
+}
+
+export enum ErrorLanguages {
+  PT_BR = 0,
+  ENG_US = 1,
+}
+
+export class UserAuthError extends Error {
+  static language: ErrorLanguages = ErrorLanguages.PT_BR;
+  
+  constructor(code: Errors) {
+    super();
+  }
+}
+
 export class UserAuthenticator {
-  private static emailRegex = /^.+@.+$/;
+  static readonly PASSWORD_MIN_LENGTH = 6;
+  private static readonly EMAIL_REGEX = /^.+@.+$/;
+
   private app: FirebaseApp;
   private auth: Auth;
   private database: Firestore;
@@ -44,15 +74,15 @@ export class UserAuthenticator {
   }
 
   async signInWithPassword(options: SignInOptions) {
-    const credential = await signInWithEmailAndPassword(
-      this.auth,
-      options.email,
-      options.password
-    );
-
-    const user = credential.user;
-
-    return user;
+    try {
+      await signInWithEmailAndPassword(
+        this.auth,
+        options.email,
+        options.password
+      );
+    } catch (err) {
+      throw Error();
+    }
   }
 
   async signUpWithPassword(options: SignUpOptions) {
@@ -91,7 +121,7 @@ export class UserAuthenticator {
     });
   }
 
-  getAuth() {
+  getUser() {
     return this.auth.currentUser;
   }
 
@@ -126,29 +156,34 @@ export class UserAuthenticator {
   static validateSignUpOptions(options: SignUpOptions): ValidateResult {
     const { email, name, password } = options;
 
-    if (name.length == 0) return {
-      valid: false,
-      message: 'invalid-name',
-    };
+    if (name.length == 0)
+      return this.createInvalidation('invalid name');
 
-    if (password.length < 8) return {
-      valid: false,
-      message: 'password-is-less-than-8-chars',
-    };
+    if (password.length < this.PASSWORD_MIN_LENGTH)
+      return this.createInvalidation(`password is less than ${this.PASSWORD_MIN_LENGTH} chars`);
 
-    if (UserAuthenticator.isEmail(email)) return {
-      valid: false,
-      message: 'invalid-email',
-    };
+    if (!this.isEmail(email))
+      return this.createInvalidation('invalid email');
 
-    return {
-      valid: true,
-      message: 'ok',
-    };
+    return this.createValidation();
   }
 
-  static isEmail(email: string) {
-    return this.emailRegex.test(email);
+  private static createInvalidation(message: string): ValidateResult {
+    return {
+      message,
+      valid: false,
+    }
+  }
+
+  private static createValidation(): ValidateResult {
+    return {
+      message: 'ok',
+      valid: true,
+    }
+  }
+
+  private static isEmail(email: string) {
+    return this.EMAIL_REGEX.test(email);
   }
 }
 

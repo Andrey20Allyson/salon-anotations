@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, Animated } from 'react-native';
 import { StackParamList } from '../types';
 import { body } from '../styles/screens/Home';
 import { text } from '../styles/base/text';

@@ -33,7 +33,7 @@ const { fontScale, height, scale, width } = Dimensions.get('screen');
 
 export const root = createStyle({
   marginTop: 20,
-  marginBottom: 20
+  marginBottom: 5
 });
 
 export const title = createStyle({
@@ -52,6 +52,14 @@ export const input = createStyle({
   width: width * .6,
   height: 35,
   paddingLeft: 5,
+});
+
+export const error = createStyle({
+  ...title,
+  color: '#f00',
+  textAlign: 'right',
+  marginRight: 15,
+  fontWeight: 'bold',
 });
 
 export const bottomBar = createStyle({

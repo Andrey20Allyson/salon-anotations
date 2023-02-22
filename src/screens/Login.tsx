@@ -9,7 +9,7 @@ import SubmitButton from "../components/SubmitButton";
 import { title } from "../styles/base/text";
 import { container } from "../styles/base/view";
 import { StackParamList } from "../types";
-import { RefType, focusIn, setRefIn, createRefStorage } from '../utils/native-ref';
+import { createRefStorage } from '../utils/native-ref';
 
 export interface LoginProps extends NativeStackScreenProps<StackParamList, 'Login'> { }
 
@@ -28,8 +28,8 @@ export default function Login(props: LoginProps) {
       });
 
       navigation.navigate?.('Home');
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.error(err);
     }
   }
 
