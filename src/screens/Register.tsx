@@ -35,8 +35,10 @@ export default function Register(props: RegisterProps) {
 
       navigation.navigate('Home');
     } catch (err) {
-      switch (err) {
-        
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error('unknown');
       }
     }
   }

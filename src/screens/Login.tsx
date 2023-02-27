@@ -29,7 +29,11 @@ export default function Login(props: LoginProps) {
 
       navigation.navigate?.('Home');
     } catch (err) {
-      console.error(err);
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error(`unknown error: ${err}`);
+      }
     }
   }
 

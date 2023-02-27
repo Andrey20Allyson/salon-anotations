@@ -1,6 +1,7 @@
 import { Image, Pressable, PressableAndroidRippleConfig, StyleSheet, Text, View } from "react-native";
 import { text } from "../styles/base/text";
 import Icon from "./Icon";
+import * as styles from '../styles/components/ProcedureRegistryItem';
 
 export interface ProcedureRegistryItemProps {
   title: string;
@@ -26,39 +27,3 @@ export default function ProcedureRegistryItem(props: ProcedureRegistryItemProps)
     </Pressable>
   )
 }
-
-export const styles = StyleSheet.create({
-  body: {
-    width: '90%',
-    height: 40,
-    margin: 10,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    padding: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: '#fff1',
-    borderRadius: 3,
-    borderBottomWidth: 2,
-    borderBottomColor: '#fffa',
-  },
-  title: {
-    ...text,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  leftView: {
-    flexDirection: 'row',
-    flex: 6,
-    overflow: 'hidden',
-  },
-  rightView: {
-    flexDirection: 'row',
-    flex: 3,
-    justifyContent: 'space-between'
-  },
-  text: {
-    ...text,
-  },
-}); 
